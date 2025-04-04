@@ -1,14 +1,21 @@
+import Model.DTO.DoctorDTO;
+import Model.DTO.PatientDTO;
 import Model.Entity.Speciality;
+import Service.AppointmentService;
+import Service.DoctorService;
+import Service.PatientService;
 
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int option;
-
+        Scanner scanner = new Scanner(System.in);
+        DoctorService doctorService = new DoctorService();
+        PatientService patientService = new PatientService();
+        AppointmentService appointmentService = new AppointmentService();
         List<Speciality> specialitiesList = Speciality.loadSpecialties();
+        int option;
 
         do {
             System.out.println("---> Bienvenido al Sistema de Citas Medicas del Hospital Nacional de Zaun <---");
@@ -22,8 +29,8 @@ public class Main {
             System.out.println("0- Salir");
             System.out.print("Selecciona una opcion: ");
 
-            option = sc.nextInt();
-            sc.nextLine();
+            option = scanner.nextInt();
+            scanner.nextLine();
 
             switch (option) {
                 case 1:
@@ -49,12 +56,34 @@ public class Main {
                     // TODO: Solicitar datos del paciente campos: nombre, apellido, DUI, nacimiento
                     // Si es menor de edad, asignar DUI "00000000-0"
                     // Guardar paciente
+                    System.out.println("Ingrese nombre del paciente: ");
+                    String nombrePaciente = scanner.nextLine();
+                    System.out.println("Ingrese apellido del paciente: ");
+                    String apellidoPaciente = scanner.nextLine();
+                    System.out.println("Ingrese DUI del paciente: ");
+                    String duiPaciente = scanner.nextLine();
+                    System.out.println("Ingrese cumpleaños del paciente (dd-MM-yyyy): ");
+                    String cumpleañosPaciente = scanner.nextLine();
+                    patientService.agregarPaciente(new PatientDTO(nombrePaciente, apellidoPaciente, duiPaciente, cumpleañosPaciente));
                     break;
 
                 case 4:
                     // TODO: Solicitar datos del doctor campos: nombre, apellido, DUI, nacimiento, contratación, especialidad
                     // Generar codigo con el formato ZNH-XAX-MD-AX
                     // Guardar doctor
+                    System.out.println("Ingrese nombre del doctor: ");
+                    String nombreDoctor = scanner.nextLine();
+                    System.out.println("Ingrese apellido del doctor: ");
+                    String apellidoDoctor = scanner.nextLine();
+                    System.out.println("Ingrese DUI del doctor: ");
+                    String duiDoctor = scanner.nextLine();
+                    System.out.println("Ingrese cumpleaños del doctor (dd-MM-yyyy): ");
+                    String cumpleañosDoctor = scanner.nextLine();
+                    System.out.println("Ingrese fecha de reclutamiento (dd-MM-yyyy): ");
+                    String fechaReclutamientoDoctor = scanner.nextLine();
+                    System.out.println("Ingrese especialidad: ");
+                    String especialidadDoctor = scanner.nextLine();
+                    doctorService.agregarDoctor(new DoctorDTO(nombreDoctor, apellidoDoctor, duiDoctor, cumpleañosDoctor, fechaReclutamientoDoctor, especialidadDoctor));
                     break;
 
                 case 5:
@@ -81,5 +110,7 @@ public class Main {
             }
 
         } while (option != 0);
+
+        scanner.close();
     }
 }
