@@ -3,10 +3,10 @@ package Model.Entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class SameDayAppointment extends Appointment {
+public class TodayAppointment extends Appointment {
     private LocalTime appointmentTime;
 
-    public SameDayAppointment(Doctor doctor, Patient patient, Speciality specialty, LocalDate appointmentDate, LocalTime appointmentTime) {
+    public TodayAppointment(Doctor doctor, Patient patient, Speciality specialty, LocalDate appointmentDate, LocalTime appointmentTime) {
         super(doctor, patient, specialty, appointmentDate);
         this.appointmentTime = appointmentTime;
     }
