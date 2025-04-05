@@ -5,16 +5,16 @@ import Model.DTO.PatientDTO;
 import java.util.Calendar;
 
 public class Patient {
-    private String nombre;
-    private String apellido;
+    private String name;
+    private String lastname;
     private String dui;
-    private String cumpleaños;
+    private String birthday;
 
     public Patient(PatientDTO dto) {
-        this.nombre = dto.getNombre();
-        this.apellido = dto.getApellido();
-        this.cumpleaños = dto.getCumpleaños();
-        this.dui = calcularDUI(dto.getDui(), dto.getCumpleaños());
+        this.name = dto.getName();
+        this.lastname = dto.getLastname();
+        this.birthday = dto.getBirthday();
+        this.dui = calcularDUI(dto.getDui(), dto.getBirthday());
     }
 
     private String calcularDUI(String dui, String cumpleaños) {
@@ -24,6 +24,6 @@ public class Patient {
     }
 
     public String getInfo() {
-        return "Paciente: " + nombre + " " + apellido + ", DUI: " + dui + ", Cumpleaños: " + cumpleaños;
+        return "Paciente: " + name + " " + lastname + ", DUI: " + dui + ", Cumpleaños: " + birthday;
     }
 }

@@ -1,26 +1,26 @@
 package Model.DTO;
 
 public class DoctorDTO {
-    private String nombre;
-    private String apellido;
+    private String name;
+    private String lastname;
     private String dui;
-    private String cumpleaños;
-    private String fechaReclutamiento;
-    private String especialidad;
+    private String birthday;
+    private String recruitmentdate;
+    private String specialty;
 
-    public DoctorDTO(String nombre, String apellido, String dui, String cumpleaños, String fechaReclutamiento, String especialidad) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public DoctorDTO(String name, String lastname, String dui, String birthday, String recruitmentdate, String specialty) {
+        this.name = name;
+        this.lastname = lastname;
         this.dui = dui;
-        this.cumpleaños = cumpleaños;
-        this.fechaReclutamiento = fechaReclutamiento;
-        this.especialidad = especialidad;
+        this.birthday = birthday;
+        this.recruitmentdate = recruitmentdate;
+        this.specialty = specialty;
     }
 
-    public String getNombre() { return nombre; }
-    public String getApellido() { return apellido; }
+    public String getName() { return name; }
+    public String getLastname() { return lastname; }
     public String getDui() { return dui; }
-    public String getCumpleaños() { return cumpleaños; }
-    public String getFechaReclutamiento() { return fechaReclutamiento; }
-    public String getEspecialidad() { return especialidad; }
+    public String getBirthday() { return birthday; }
+    public String getRecruitmentdate() { return recruitmentdate; }
+    public String getSpecialty() { return specialty; }
 }

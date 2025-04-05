@@ -4,25 +4,25 @@ import Model.DTO.DoctorDTO;
 import Utils.CodeUtils;
 
 public class Doctor {
-    private String nombre;
-    private String apellido;
+    private String name;
+    private String lastname;
     private String dui;
-    private String cumpleaños;
-    private String fechaReclutamiento;
-    private String especialidad;
-    private String codigoDoctor;
+    private String birthday;
+    private String recruitmentdate;
+    private String specialty;
+    private String codeDoctor;
 
     public Doctor(DoctorDTO dto) {
-        this.nombre = dto.getNombre();
-        this.apellido = dto.getApellido();
+        this.name = dto.getName();
+        this.lastname = dto.getLastname();
         this.dui = dto.getDui();
-        this.cumpleaños = dto.getCumpleaños();
-        this.fechaReclutamiento = dto.getFechaReclutamiento();
-        this.especialidad = dto.getEspecialidad();
-        this.codigoDoctor = CodeUtils.generarCodigoDoctor();
+        this.birthday = dto.getBirthday();
+        this.recruitmentdate = dto.getRecruitmentdate();
+        this.specialty = dto.getSpecialty();
+        this.codeDoctor = CodeUtils.generarCodigoDoctor();
     }
 
     public String getInfo() {
-        return "Doctor: " + nombre + " " + apellido + ", DUI: " + dui + ", Especialidad: " + especialidad + ", Código: " + codigoDoctor;
+        return "Doctor: " + name + " " + lastname + ", DUI: " + dui + ", Especialidad: " + specialty + ", Código: " + codeDoctor;
     }
 }

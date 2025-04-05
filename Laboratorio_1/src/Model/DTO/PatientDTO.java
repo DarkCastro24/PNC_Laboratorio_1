@@ -1,20 +1,20 @@
 package Model.DTO;
 
 public class PatientDTO {
-    private String nombre;
-    private String apellido;
+    private String name;
+    private String lastname;
     private String dui;
-    private String cumpleaños;
+    private String birthday;
 
-    public PatientDTO(String nombre, String apellido, String dui, String cumpleaños) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public PatientDTO(String name, String lastname, String dui, String birthday) {
+        this.name = name;
+        this.lastname = lastname;
         this.dui = dui;
-        this.cumpleaños = cumpleaños;
+        this.birthday = birthday;
     }
 
-    public String getNombre() { return nombre; }
-    public String getApellido() { return apellido; }
+    public String getName() { return name; }
+    public String getLastname() { return lastname; }
     public String getDui() { return dui; }
-    public String getCumpleaños() { return cumpleaños; }
+    public String getBirthday() { return birthday; }
 }
