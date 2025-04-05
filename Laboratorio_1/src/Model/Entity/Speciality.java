@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Speciality {
-
     private String name;
 
     public Speciality(String name) {

@@ -1,17 +1,21 @@
 package Model.Entity;
 
+import Utils.CodeUtils;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public abstract class Appointment {
+    private String code;
     private Doctor doctor;
     private Patient patient;
-    private Speciality specialty;
+    private String specialty;
     private LocalDate appointmentDate;
     private boolean attended;
     private boolean broughtCookies;
 
-    public Appointment(Doctor doctor, Patient patient, Speciality specialty, LocalDate appointmentDate) {
+    public Appointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate) {
+        this.code = CodeUtils.generateAppointmentCode();
         this.doctor = doctor;
         this.patient = patient;
         this.specialty = specialty;
@@ -22,6 +26,10 @@ public abstract class Appointment {
 
     public abstract LocalTime getAppointmentTime();
 
+    public String getCode() {
+        return this.code;
+    }
+
     public Doctor getDoctor() {
         return this.doctor;
     }
@@ -30,7 +38,7 @@ public abstract class Appointment {
         return this.patient;
     }
 
-    public Speciality getSpecialty() {
+    public String getSpecialty() {
         return this.specialty;
     }
 

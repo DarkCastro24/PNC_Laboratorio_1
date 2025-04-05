@@ -14,4 +14,16 @@ public class PatientService {
         pacientes.add(paciente);
         System.out.println("Paciente agregado: " + paciente.getInfo());
     }
+
+    public Patient getPatientByDui(String dui) {
+        for (Patient p : pacientes) {
+            if (p.getDui().trim().equals(dui)) {
+                System.out.println("Paciente encontrado: " + p.getNombre() + " " + p.getApellido());
+                return p;
+            } else {
+                System.out.println(p.getDui());
+            }
+        }
+        return null;
+    }
 }
