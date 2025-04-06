@@ -6,7 +6,7 @@ import java.time.LocalTime;
 public class FutureAppointment extends Appointment {
     private LocalTime assignedTime;
 
-    public FutureAppointment(Doctor doctor, Patient patient, Speciality specialty, LocalDate appointmentDate, LocalTime assignedTime) {
+    public FutureAppointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate, LocalTime assignedTime) {
         super(doctor, patient, specialty, appointmentDate);
         this.assignedTime = assignedTime;
     }

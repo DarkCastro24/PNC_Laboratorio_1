@@ -6,12 +6,12 @@ import java.time.LocalTime;
 public abstract class Appointment {
     private Doctor doctor;
     private Patient patient;
-    private Speciality specialty;
+    private String specialty;
     private LocalDate appointmentDate;
     private boolean attended;
     private boolean broughtCookies;
 
-    public Appointment(Doctor doctor, Patient patient, Speciality specialty, LocalDate appointmentDate) {
+    public Appointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate) {
         this.doctor = doctor;
         this.patient = patient;
         this.specialty = specialty;
@@ -30,7 +30,7 @@ public abstract class Appointment {
         return this.patient;
     }
 
-    public Speciality getSpecialty() {
+    public String getSpecialty() {
         return this.specialty;
     }
 

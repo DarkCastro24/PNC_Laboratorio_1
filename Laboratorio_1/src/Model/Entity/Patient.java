@@ -17,7 +17,19 @@ public class Patient extends Person {
         return (anioActual - anioNacimiento < 18) ? "00000000-0" : dui;
     }
 
+    public String getDui() {
+        return dui;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public String getInfo() {
-        return "Paciente: " + name + " " + lastName + ", DUI: " + dui + ", Cumpleaños: " + birthDate;
+        return "Datos del paciente: " + getName() + " " + getLastName() + ", DUI: " + getDui() + ", Cumpleaños: " + getBirthDate();
     }
 }
