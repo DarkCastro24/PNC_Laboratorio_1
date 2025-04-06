@@ -45,6 +45,27 @@ public class AppointmentService {
         }
     }
 
+    public List<Appointment> searchByDoctorCodeView(String doctorCode) {
+        boolean exists = false;
+        for (Appointment a : appointments) {
+            if (a.getDoctor().getCodeDoctor().equalsIgnoreCase(doctorCode)) {
+                if (!exists) {
+                    System.out.println("---> Listado de citas para el doctor con codigo: " + doctorCode + " <---");
+                    exists = true;
+                }
+                System.out.println("Dia de la cita: " + a.getAppointmentDate() + " hora " + a.getAppointmentTime());
+                System.out.println(a.getDoctor().getInfo());
+                System.out.println(a.getPatient().getInfo());
+                System.out.println("Ya fue antendido?: " + (a.isAttended() ? "Si" : "No"));
+                System.out.println("Trajo galletas? : " + (a.isBroughtCookies() ? "Si 🍪" : "No"));
+            }
+        }
+        if (!exists) {
+            System.out.println("No hay citas registradas del doctor con codigo: " + doctorCode);
+        }
+        return null;
+    }
+
     public void searchByDoctorCode(String doctorCode) {
         boolean exists = false;
         for (Appointment a : appointments) {
@@ -77,5 +98,9 @@ public class AppointmentService {
         }
         System.out.println("No se encontro la cita");
         return false;
+    }
+
+    public List<Appointment> getAllAppointments() {
+        return appointments;
     }
 }

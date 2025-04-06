@@ -54,7 +54,7 @@ public class Main {
                             duiPaciente,
                             cumpleaniosPaciente
                     );
-                    patientService.agregarPaciente(nuevoPaciente);
+                    patientService.addPatient(nuevoPaciente);
                     break;
 
                 case 2:
@@ -103,7 +103,7 @@ public class Main {
                             fechaReclutamientoDoctor,
                             especialidadDoctor
                     );
-                    doctorService.agregarDoctor(nuevoDoctor);
+                    doctorService.addDoctor(nuevoDoctor);
                     break;
 
                 case 3:

@@ -9,10 +9,11 @@ import java.util.List;
 public class DoctorService {
     private List<Doctor> doctors = new ArrayList<>();
 
-    public void agregarDoctor(DoctorDTO dto) {
+    public String addDoctor(DoctorDTO dto) {
         Doctor doctor = new Doctor(dto);
         doctors.add(doctor);
         System.out.println("Doctor agregado: " + doctor.getInfo());
+        return doctor.getCodeDoctor();
     }
 
     public Doctor getDoctorByCodigo(String codigo) {
