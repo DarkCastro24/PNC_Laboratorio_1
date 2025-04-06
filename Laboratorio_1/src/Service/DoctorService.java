@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorService {
-    private List<Doctor> doctors = new ArrayList<>();
+    public List<Doctor> doctors = new ArrayList<>();
 
     public String addDoctor(DoctorDTO dto) {
         Doctor doctor = new Doctor(dto);
@@ -23,6 +23,9 @@ public class DoctorService {
             }
         }
         return null;
+    }
+    public List<Doctor> getDoctors() {
+        return doctors;
     }
 
     private String generarCodigoDoctor() {

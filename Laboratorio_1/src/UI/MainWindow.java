@@ -46,7 +46,7 @@ public class MainWindow extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 3, 10, 10));
-        buttonPanel.setBackground(new Color(36, 36, 36));
+        buttonPanel.setBackground(new Color(36, 36, 36));   
 
         JPanel row1 = new JPanel(new GridLayout(1, 3, 10, 10));
         row1.setBackground(new Color(36, 36, 36));
@@ -68,6 +68,8 @@ public class MainWindow extends JFrame {
 
         JPanel row3 = new JPanel(new GridLayout(1, 1, 10, 10));
         row3.setBackground(new Color(36, 36, 36));
+        JButton btnListDoctors = createButton("View doctors");
+        row3.add(btnListDoctors);
         JButton btnDecorative = createButton("Mundo saves lives!");
         row3.add(btnDecorative);
 
@@ -86,8 +88,66 @@ public class MainWindow extends JFrame {
         btnAddDoctor.addActionListener(e -> addDoctor());
         btnSearchAppointmentsByCode.addActionListener(e -> searchAppointmentsByDoctor());
         btnCancelAppointment.addActionListener(e -> cancelAppointment());
+        btnListDoctors.addActionListener(e -> showDoctorsTable());
         btnDecorative.addActionListener(e -> showMessage("¡MUNDO SALVA VIDAS!"));
         btnExit.addActionListener(e -> System.exit(0));
+    }
+    private void showDoctorsTable() {
+        List<Doctor> doctors = doctorService.getDoctors(); // Cambiado a getDoctors()
+        if (doctors.isEmpty()) {
+            showMessage("No hay doctores registrados.");
+            return;
+        }
+
+        JDialog dialog = new JDialog(this, "Lista de Doctores", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.getContentPane().setBackground(new Color(36, 36, 36));
+        dialog.setSize(600, 400);
+        dialog.setLocationRelativeTo(this);
+
+        String[] columnNames = {"Código", "Nombre", "Apellido", "DUI"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        for (Doctor doc : doctors) {
+            Object[] row = {
+                    doc.getCodeDoctor(),
+                    doc.getName(),
+                    doc.getLastName(),
+                    doc.getDui()
+            };
+            model.addRow(row);
+        }
+
+        JTable table = new JTable(model);
+        table.setRowHeight(25);
+        table.setBackground(new Color(60, 63, 65));
+        table.setForeground(Color.WHITE);
+        table.setGridColor(new Color(100, 100, 100));
+        table.setSelectionBackground(new Color(0, 200, 140));
+        table.setSelectionForeground(Color.WHITE);
+
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        headerRenderer.setBackground(new Color(25, 25, 25));
+        headerRenderer.setForeground(Color.WHITE);
+
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+            table.getColumnModel().getColumn(i).setCellRenderer(headerRenderer);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.getViewport().setBackground(new Color(36, 36, 36));
+        dialog.add(scrollPane, BorderLayout.CENTER);
+        dialog.setVisible(true);
+    }
+    public List<Doctor> getAllDoctors() {
+        return doctorService.getDoctors(); // Cambiado a getDoctors()
     }
 
     private JButton createButton(String text, Color bgColor) {
