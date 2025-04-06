@@ -15,7 +15,7 @@ public class AppointmentService {
         for (Appointment existing : appointments) {
             LocalDate date = existing.getAppointmentDate();
             LocalTime time = existing.getAppointmentTime();
-            if (date.equals(newAppointment.getAppointmentDate()) && time.equals(newAppointment.getAppointmentTime()) && existing.getDoctor().getCodigoDoctor().equals(newAppointment.getDoctor().getCodigoDoctor())) {
+            if (date.equals(newAppointment.getAppointmentDate()) && time.equals(newAppointment.getAppointmentTime()) && existing.getDoctor().getCodeDoctor().equals(newAppointment.getDoctor().getCodeDoctor())) {
                 System.out.println("El doctor ya cuenta con una cita a esa hora!!!");
                 return false;
             }
@@ -25,7 +25,7 @@ public class AppointmentService {
             }
         }
         appointments.add(newAppointment);
-        System.out.println("Cita registrada con el codigo: " + newAppointment.getCode());
+        System.out.println("Cita registrada con el codigo: " + newAppointment.getDoctor().getCodeDoctor());
         return true;
     }
 
@@ -48,7 +48,7 @@ public class AppointmentService {
     public void searchByDoctorCode(String doctorCode) {
         boolean exists = false;
         for (Appointment a : appointments) {
-            if (a.getDoctor().getCodigoDoctor().equalsIgnoreCase(doctorCode)) {
+            if (a.getDoctor().getCodeDoctor().equalsIgnoreCase(doctorCode)) {
                 if (!exists) {
                     System.out.println("---> Listado de citas para el doctor con codigo: " + doctorCode + " <---");
                     exists = true;
