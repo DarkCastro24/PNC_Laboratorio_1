@@ -6,8 +6,8 @@ import java.time.LocalTime;
 public class TodayAppointment extends Appointment {
     private LocalTime appointmentTime;
 
-    public TodayAppointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate, LocalTime appointmentTime) {
-        super(doctor, patient, specialty, appointmentDate);
+    public TodayAppointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate, LocalTime appointmentTime, LocalDate date,LocalTime time) {
+        super(doctor, patient, specialty, appointmentDate,date,time);
         this.appointmentTime = appointmentTime;
     }
 

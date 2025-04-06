@@ -13,16 +13,23 @@ public abstract class Appointment {
     private LocalDate date;
     private LocalTime time;
 
-    public Appointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate) {
+    public Appointment(Doctor doctor, Patient patient, String specialty, LocalDate appointmentDate, LocalDate date, LocalTime time) {
         this.doctor = doctor;
         this.patient = patient;
         this.specialty = specialty;
         this.appointmentDate = appointmentDate;
         this.attended = false;
         this.broughtCookies = false;
+        this.date = date;
+        this.time = time;
     }
 
+
     public abstract LocalTime getAppointmentTime();
+
+    public void setDate(LocalDate date) { this.date = date; }
+
+    public void setTime(LocalTime time) { this.time = time; }
 
     public Doctor getDoctor() {
         return this.doctor;

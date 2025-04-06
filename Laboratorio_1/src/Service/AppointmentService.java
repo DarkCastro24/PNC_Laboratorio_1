@@ -12,85 +12,92 @@ public class AppointmentService {
     private final List<Appointment> appointments = new ArrayList<>();
 
     public boolean addAppointment(Appointment newAppointment) {
-        for (Appointment existing : appointments) {
+        for(Appointment existing : appointments) {
             LocalDate date = existing.getAppointmentDate();
             LocalTime time = existing.getAppointmentTime();
-            if (date.equals(newAppointment.getAppointmentDate()) && time.equals(newAppointment.getAppointmentTime()) && existing.getDoctor().getCodeDoctor().equals(newAppointment.getDoctor().getCodeDoctor())) {
+            newAppointment.setDate(date);
+            newAppointment.setTime(time);
+            if(date.equals(newAppointment.getAppointmentDate())
+                    && time.equals(newAppointment.getAppointmentTime())
+                    && existing.getDoctor().getCodeDoctor().equals(newAppointment.getDoctor().getCodeDoctor())) {
                 System.out.println("El doctor ya cuenta con una cita a esa hora!!!");
                 return false;
             }
-            if (date.equals(newAppointment.getAppointmentDate()) && time.equals(newAppointment.getAppointmentTime()) && existing.getPatient().getDui().equals(newAppointment.getPatient().getDui())) {
+            if(date.equals(newAppointment.getAppointmentDate())
+                    && time.equals(newAppointment.getAppointmentTime())
+                    && existing.getPatient().getDui().equals(newAppointment.getPatient().getDui())) {
                 System.out.println("El paciente ya cuenta con una cita a esa hora!!!");
                 return false;
             }
         }
         appointments.add(newAppointment);
-        System.out.println("Cita registrada con el codigo: " + newAppointment.getDoctor().getCodeDoctor());
+        System.out.println("Cita registrada para el doctor: " + newAppointment.getDoctor().getCodeDoctor());
         return true;
     }
 
     public void listAppointments() {
-        if (appointments.isEmpty()) {
+        if(appointments.isEmpty()) {
             System.out.println("No hay ninguna cita registrada todavia.");
             return;
         }
         System.out.println("---> Lista de todas las citas: <---");
-        for (Appointment a : appointments) {
+        for(Appointment a : appointments) {
             System.out.println("----------------------------------");
             System.out.println("Dia de la cita: " + a.getAppointmentDate() + " hora " + a.getAppointmentTime());
             System.out.println("Doctor encargado \n" + a.getDoctor().getInfo());
             System.out.println("Paciente: \n" + a.getPatient().getInfo());
-            System.out.println("\nFue atendido?: " + (a.isAttended() ? "Si" : "No"));
-            System.out.println("Trajo galletas?: " + (a.isBroughtCookies() ? "Yes 🍪" : "No"));
+            System.out.println("Trajo galletas?: " + (!a.isBroughtCookies() ? "Yes 🍪" : "No"));
         }
     }
 
     public List<Appointment> searchByDoctorCodeView(String doctorCode) {
-        boolean exists = false;
-        for (Appointment a : appointments) {
-            if (a.getDoctor().getCodeDoctor().equalsIgnoreCase(doctorCode)) {
-                if (!exists) {
+        List<Appointment> found = new ArrayList<>();
+        for(Appointment a : appointments) {
+            System.out.println(a.toString());
+            if(a.getDoctor().getCodeDoctor().equals(doctorCode)) {
+                found.add(a);
+                if(found.size()==1) {
                     System.out.println("---> Listado de citas para el doctor con codigo: " + doctorCode + " <---");
-                    exists = true;
                 }
                 System.out.println("Dia de la cita: " + a.getAppointmentDate() + " hora " + a.getAppointmentTime());
                 System.out.println(a.getDoctor().getInfo());
                 System.out.println(a.getPatient().getInfo());
-                System.out.println("Ya fue antendido?: " + (a.isAttended() ? "Si" : "No"));
-                System.out.println("Trajo galletas? : " + (a.isBroughtCookies() ? "Si 🍪" : "No"));
+                System.out.println("Trajo galletas? : " + (!a.isBroughtCookies() ? "Si 🍪" : "No"));
             }
         }
-        if (!exists) {
+        if(found.isEmpty()) {
             System.out.println("No hay citas registradas del doctor con codigo: " + doctorCode);
+            return found;
         }
-        return null;
+        return found;
     }
 
     public void searchByDoctorCode(String doctorCode) {
         boolean exists = false;
-        for (Appointment a : appointments) {
-            if (a.getDoctor().getCodeDoctor().equalsIgnoreCase(doctorCode)) {
-                if (!exists) {
+        for(Appointment a : appointments) {
+            if(a.getDoctor().getCodeDoctor().equalsIgnoreCase(doctorCode)) {
+                if(!exists) {
                     System.out.println("---> Listado de citas para el doctor con codigo: " + doctorCode + " <---");
-                    exists = true;
+                    exists=true;
                 }
                 System.out.println("Dia de la cita: " + a.getAppointmentDate() + " hora " + a.getAppointmentTime());
                 System.out.println(a.getDoctor().getInfo());
                 System.out.println(a.getPatient().getInfo());
-                System.out.println("Ya fue antendido?: " + (a.isAttended() ? "Si" : "No"));
-                System.out.println("Trajo galletas? : " + (a.isBroughtCookies() ? "Si 🍪" : "No"));
+                System.out.println("Trajo galletas? : " + (!a.isBroughtCookies() ? "Si 🍪" : "No"));
             }
         }
-        if (!exists) {
+        if(!exists) {
             System.out.println("No hay citas registradas del doctor con codigo: " + doctorCode);
         }
     }
 
-    public boolean cancelAppointment(LocalDate date, LocalTime time, String patientDui) {
+    public boolean cancelAppointment(LocalDate date,LocalTime time,String patientDui) {
         Iterator<Appointment> it = appointments.iterator();
-        while (it.hasNext()) {
+        while(it.hasNext()) {
             Appointment a = it.next();
-            if (a.getAppointmentDate().equals(date) && a.getAppointmentTime().equals(time) && a.getPatient().getDui().equals(patientDui)) {
+            if(a.getAppointmentDate().equals(date)
+                    && a.getAppointmentTime().equals(time)
+                    && a.getPatient().getDui().equals(patientDui)) {
                 it.remove();
                 System.out.println("La cita fue cancelada correctamente");
                 return true;

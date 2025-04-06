@@ -150,9 +150,9 @@ public class Main {
                     }
                     Appointment newAppointment;
                     if (appointmentDate.equals(LocalDate.now())) {
-                        newAppointment = new TodayAppointment(doctor, patient, doctor.getSpecialty(), appointmentDate, appointmentTime);
+                        newAppointment = new TodayAppointment(doctor, patient, doctor.getSpecialty(), appointmentDate, appointmentTime, appointmentDate, appointmentTime);
                     } else {
-                        newAppointment = new FutureAppointment(doctor, patient, doctor.getSpecialty(), appointmentDate, appointmentTime);
+                        newAppointment = new FutureAppointment(doctor, patient, doctor.getSpecialty(), appointmentDate, appointmentTime, appointmentDate, appointmentTime);
                     }
                     if (!appointmentService.addAppointment(newAppointment)) {
                         System.out.println("No se pudo agendar la cita debido a conflicto de horarios.");
